@@ -1,0 +1,6 @@
+[
+  {"id": "orientacion", "servicio": "Primera orientación", "detalle": "", "precio": "Gratis"},
+  {"id": "express", "servicio": "Consulta express", "detalle": "30 minutos", "precio": "40 €"},
+  {"id": "tecnica", "servicio": "Consulta técnica", "detalle": "60 minutos", "precio": "85 €"},
+  {"id": "revision", "servicio": "Consulta técnica con revisión documental", "detalle": "", "precio": "150 €"}
+]

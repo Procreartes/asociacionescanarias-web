@@ -1,0 +1,6 @@
+[
+  {"id": "impulsa", "nombre": "Plan Impulsa", "para": "Asociaciones pequeñas", "precio": "45", "nota": "Soporte básico"},
+  {"id": "gestiona", "nombre": "Plan Gestiona", "para": "Asociaciones activas", "precio": "95", "nota": "Incluye contabilidad"},
+  {"id": "profesional", "nombre": "Plan Profesional", "para": "Asociaciones que prestan servicios", "precio": "185", "nota": "Actividad económica"},
+  {"id": "red-publica", "nombre": "Plan Red Pública", "para": "Asociaciones que trabajan con administraciones", "precio": "325", "nota": "Facturación pública"}
+]

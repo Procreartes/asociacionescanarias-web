@@ -1,0 +1,26 @@
+[
+  {
+    "id": "starter",
+    "nombre": "Pack Starter",
+    "lema": "Crea tu asociación sin complicaciones",
+    "precio": "450 €",
+    "texto": "Creamos su asociación desde cero y le entregamos toda la documentación necesaria para empezar a funcionar correctamente desde el primer día.",
+    "incluye": "Asesoramiento inicial: tipo de asociación, actividad y estructura de la junta directiva\nActa fundacional, estatutos adaptados, solicitud de inscripción y documentación de socios fundadores\nPresentación en el Registro de Asociaciones y seguimiento del expediente\nSolicitud de CIF, alta censal y orientación fiscal básica\nCertificados y documentación para abrir la cuenta bancaria\nKit de gestión: modelos de libro de socios, actas, convocatorias y certificados"
+  },
+  {
+    "id": "reactiva",
+    "nombre": "Pack Reactiva tu Asociación",
+    "lema": "Para asociaciones inscritas que no funcionan como deberían",
+    "precio": "desde 280 €",
+    "texto": "Muchas asociaciones están inscritas pero no funcionan correctamente o tienen problemas administrativos acumulados. Este pack permite ordenar y actualizar la entidad.",
+    "incluye": "Revisión de estatutos\nActualización de la junta directiva\nRegularización documental\nOrganización administrativa básica\nAsesoramiento sobre obligaciones"
+  },
+  {
+    "id": "profesionaliza",
+    "nombre": "Pack Profesionaliza tu Asociación",
+    "lema": "Para asociaciones con actividad que quieren organizarse mejor",
+    "precio": "desde 380 €",
+    "texto": "Dirigido a asociaciones que ya tienen actividad y quieren mejorar su organización.",
+    "incluye": "Revisión del funcionamiento administrativo\nOrganización documental\nImplantación de contabilidad básica\nRevisión de obligaciones fiscales\nAsesoramiento estratégico inicial"
+  }
+]

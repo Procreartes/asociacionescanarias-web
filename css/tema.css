@@ -1,0 +1,120 @@
+/* ---- Asociaciones Canarias: arena, verde laurisilva y ocre ---- */
+@font-face{font-family:"Fraunces";font-weight:600;font-display:swap;src:url(/fonts/fraunces-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-weight:700;font-display:swap;src:url(/fonts/fraunces-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito Sans";font-weight:400;font-display:swap;src:url(/fonts/nunito-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito Sans";font-weight:700;font-display:swap;src:url(/fonts/nunito-sans-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Nunito Sans";font-weight:800;font-display:swap;src:url(/fonts/nunito-sans-latin-800-normal.woff2) format("woff2")}
+:root{
+  --arena:#f7f1e6;--arena-2:#efe4d0;--tinta:#1d2a26;--suave:#4d5a55;--verde:#1f5c50;--verde-claro:#36a693;--ocre:#d99a3a;--terracota:#a8492a;
+  --fondo:var(--arena);--enlace:var(--verde);--foco:var(--terracota);--linea:#dccfb8;
+  --letra:"Nunito Sans",system-ui,sans-serif;--letra-titulo:"Fraunces",Georgia,serif;
+  --nav-fondo:color-mix(in srgb,var(--arena) 88%,transparent);--menu-activo:var(--arena-2);
+  --pie-fondo:var(--tinta);--pie-tinta:#efe7d8;--radio-boton:14px
+}
+h1,h2,h3{font-weight:700;letter-spacing:-.01em}
+h1 em,h2 em,.marca em,.pie-titulo em{font-style:normal;color:var(--verde-claro)}
+.antetitulo{color:var(--terracota)}
+.marca{font-family:var(--letra-titulo);font-size:1.15rem;font-weight:700}
+.logo-islas{display:flex;align-items:flex-end;gap:3px;height:22px}
+.logo-islas i{display:block;border-radius:50%;background:var(--verde)}
+.logo-islas i:nth-child(1){width:9px;height:7px}.logo-islas i:nth-child(2){width:15px;height:11px;background:var(--verde-claro)}.logo-islas i:nth-child(3){width:10px;height:8px;background:var(--ocre)}
+.boton-principal{background:var(--verde);color:#fff}
+.boton-principal:hover{background:#174a40}
+.boton-linea{border-color:var(--verde);color:var(--verde);background:transparent}
+.boton-linea:hover{background:var(--verde);color:#fff}
+.cabecera-seccion{max-width:760px;margin-bottom:2.6rem}
+.cabecera-seccion h2,.tipos-grid h2,.consultas-grid h2,.porque h2,.contacto h2{font-size:clamp(1.9rem,4vw,2.9rem)}
+
+/* Portada */
+.portada{padding:clamp(3rem,7vw,5.5rem) 0 clamp(2.5rem,5vw,4rem);overflow:hidden}
+.portada-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center}
+.portada h1{font-size:clamp(2.5rem,6.2vw,4.6rem);margin-bottom:1.4rem}
+.portada .entradilla{color:var(--suave);margin-bottom:2rem}
+.islas{width:100%;height:auto}
+.islas .mar{fill:none;stroke:var(--verde-claro);stroke-width:3;stroke-linecap:round;opacity:.55}
+.islas .tierra ellipse{fill:var(--verde)}
+.islas .tierra ellipse:nth-child(2n){fill:var(--verde-claro)}
+.islas .tierra ellipse:nth-child(3n){fill:var(--ocre)}
+@media (max-width:860px){.portada-grid{grid-template-columns:1fr}.portada-arte{order:-1;max-width:420px}}
+
+/* Tipos */
+.seccion-tipos{padding-top:2rem}
+.tipos-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+.tipos-grid p{color:var(--suave)}
+.tipos{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;margin:0;padding:0}
+.tipos li{padding:.55rem 1rem;border-radius:999px;background:#fff;border:1px solid var(--linea);font-weight:700}
+@media (max-width:860px){.tipos-grid{grid-template-columns:1fr;gap:1.5rem}}
+
+/* Áreas */
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.2rem}
+.area{background:#fff;border:1px solid var(--linea);border-radius:20px;padding:1.7rem}
+.area-num{display:block;font-family:var(--letra-titulo);font-size:1rem;color:var(--terracota);margin-bottom:.8rem}
+.area h3{font-size:1.35rem}
+.area p{color:var(--suave)}
+.lista-check{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.lista-check li{display:flex;gap:.55rem;align-items:flex-start}
+.lista-check svg{flex:none;width:1.15rem;height:1.15rem;margin-top:.25rem;color:var(--verde-claro)}
+
+/* Packs */
+.seccion-arena{background:var(--arena-2)}
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:1.3rem;align-items:start}
+.pack{background:#fff;border-radius:22px;padding:2rem 1.7rem;border:1px solid var(--linea);display:flex;flex-direction:column;gap:.4rem}
+.pack-destacado{border:2px solid var(--verde);box-shadow:0 18px 40px -24px rgba(31,92,80,.55)}
+.pack h3{font-size:1.45rem;margin:0}
+.pack-lema{color:var(--suave);margin:.2rem 0 0}
+.precio{font-family:var(--letra-titulo);font-size:2.2rem;color:var(--verde);margin:.6rem 0 .2rem}
+.pack .lista-check{margin:.4rem 0 1.4rem}
+.pack .boton{align-self:flex-start;margin-top:auto}
+
+/* Planes */
+.seccion-verde{background:var(--verde);color:#f3efe6}
+.seccion-verde .antetitulo{color:#f2c27a}
+.seccion-verde .entradilla{color:#dfe9e5}
+.planes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1rem}
+.plan{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:1.6rem}
+.plan h3{font-size:1.35rem;color:#fff}
+.plan-para{color:#dfe9e5;min-height:3.2em}
+.plan-precio{display:flex;align-items:baseline;gap:.35rem;margin:.4rem 0 .9rem}
+.plan-precio strong{font-family:var(--letra-titulo);font-size:2.4rem;color:#fff}
+.plan-precio span{color:#dfe9e5}
+.plan-nota{display:flex;gap:.45rem;align-items:center;margin:0;font-weight:700;color:#f2c27a}
+.plan-nota svg{width:1.1rem;height:1.1rem}
+.nota-precios{margin-top:1.8rem;color:#dfe9e5;font-size:.95rem}
+
+/* Consultas */
+.consultas-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:center}
+.consultas-grid p{color:var(--suave)}
+.tabla-precios{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--linea)}
+.tabla-precios th,.tabla-precios td{padding:1rem 1.2rem;text-align:left;border-bottom:1px solid var(--linea)}
+.tabla-precios thead th{background:var(--arena-2);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.tabla-precios tbody th span{display:block;font-weight:400;color:var(--suave);font-size:.92rem}
+.tabla-precios td{text-align:right;font-family:var(--letra-titulo);font-size:1.25rem;color:var(--verde);white-space:nowrap}
+.tabla-precios tr:last-child th,.tabla-precios tr:last-child td{border-bottom:0}
+@media (max-width:860px){.consultas-grid{grid-template-columns:1fr;gap:1.8rem}}
+
+/* Formación */
+.formacion-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+.formacion-grid article{background:#fff;border-radius:20px;padding:1.8rem;border:1px solid var(--linea)}
+.formacion-grid h3{font-size:1.4rem}
+.formacion-grid p{color:var(--suave)}
+@media (max-width:760px){.formacion-grid{grid-template-columns:1fr}}
+
+/* Por qué */
+.porque{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start}
+.porque ol{margin:0;padding:0;list-style:none;counter-reset:p;display:grid;gap:.2rem}
+.porque li{counter-increment:p;display:flex;gap:1rem;align-items:baseline;padding:.9rem 0;border-bottom:1px solid var(--linea);font-size:1.15rem;font-weight:700}
+.porque li::before{content:counter(p,decimal-leading-zero);font-family:var(--letra-titulo);color:var(--terracota);font-size:1rem}
+@media (max-width:760px){.porque{grid-template-columns:1fr;gap:1rem}}
+
+/* Contacto */
+.contacto{padding-top:0}
+.contacto-caja{background:#fff;border:1px solid var(--linea);border-radius:28px;padding:clamp(2rem,5vw,3.5rem);text-align:center}
+.contacto-caja p{color:var(--suave);max-width:52ch;margin-inline:auto}
+.contacto-caja .boton{margin-top:.6rem;word-break:break-all}
+
+/* Pie */
+.pie-arriba{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem}
+.pie-titulo{font-family:var(--letra-titulo);font-size:1.6rem;margin-bottom:.4rem}
+.pie-titulo-chico{font-weight:800;margin-bottom:.2rem}
+.pie-nota{font-size:.9rem;opacity:.8}
+@media (max-width:700px){.pie-arriba{grid-template-columns:1fr}}
