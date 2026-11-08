@@ -1,0 +1,42 @@
+[
+  {
+    "id": "constitucion-de-asociaciones",
+    "titulo": "Constitución de asociaciones",
+    "texto": "Ayudamos a crear asociaciones desde cero, con toda la documentación necesaria y estatutos adaptados a la actividad de la entidad.",
+    "puntos": "",
+    "imagen": "",
+    "imagen_alt": ""
+  },
+  {
+    "id": "asesoria-y-gestion",
+    "titulo": "Asesoría y gestión",
+    "texto": "Les acompañamos en el funcionamiento diario de la asociación.",
+    "puntos": "Gestión administrativa\nContabilidad\nObligaciones fiscales\nGestión laboral\nOrganización documental",
+    "imagen": "",
+    "imagen_alt": ""
+  },
+  {
+    "id": "actividad-economica-y-facturacion",
+    "titulo": "Actividad económica y facturación",
+    "texto": "Muchas asociaciones desarrollan proyectos y prestan servicios. Les apoyamos para hacerlo bien.",
+    "puntos": "Organización de la actividad económica\nFacturación\nFacturación electrónica\nFacturación a administraciones públicas (FACe)",
+    "imagen": "",
+    "imagen_alt": ""
+  },
+  {
+    "id": "subvenciones-y-proyectos",
+    "titulo": "Subvenciones y proyectos",
+    "texto": "Les ayudamos en todo el recorrido de una ayuda pública.",
+    "puntos": "Preparar proyectos\nPresentar solicitudes\nEjecutar subvenciones\nJustificar ayudas",
+    "imagen": "",
+    "imagen_alt": ""
+  },
+  {
+    "id": "formacion",
+    "titulo": "Formación",
+    "texto": "Programas formativos para juntas directivas, equipos técnicos y personas responsables de gestión.",
+    "puntos": "",
+    "imagen": "",
+    "imagen_alt": ""
+  }
+]

@@ -10,7 +10,7 @@ import sys
 import pathlib
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from web import RAIZ, Sitio, ICO, esc, datos, mailto  # noqa: E402
+from web import RAIZ, Sitio, ICO, esc, datos, mailto, imagen, portada_foto, foto  # noqa: E402
 
 CORREO = "hola@naroeconsulting.com"
 
@@ -40,16 +40,8 @@ CONSULTAS = datos("consultas.json", [])
 
 TIPOS = ["Culturales", "Juveniles", "Sociales", "Vecinales", "Deportivas", "ONG y entidades sin ánimo de lucro"]
 
-AREAS = [
-    ("Constitución de asociaciones", "Ayudamos a crear asociaciones desde cero, con toda la documentación necesaria y estatutos adaptados a la actividad de la entidad.", []),
-    ("Asesoría y gestión", "Les acompañamos en el funcionamiento diario de la asociación.",
-     ["Gestión administrativa", "Contabilidad", "Obligaciones fiscales", "Gestión laboral", "Organización documental"]),
-    ("Actividad económica y facturación", "Muchas asociaciones desarrollan proyectos y prestan servicios. Les apoyamos para hacerlo bien.",
-     ["Organización de la actividad económica", "Facturación", "Facturación electrónica", "Facturación a administraciones públicas (FACe)"]),
-    ("Subvenciones y proyectos", "Les ayudamos en todo el recorrido de una ayuda pública.",
-     ["Preparar proyectos", "Presentar solicitudes", "Ejecutar subvenciones", "Justificar ayudas"]),
-    ("Formación", "Programas formativos para juntas directivas, equipos técnicos y personas responsables de gestión.", []),
-]
+# Servicios: data/servicios.json [{id, titulo, texto, puntos (una línea por punto), imagen, imagen_alt}]
+SERVICIOS = datos("servicios.json", [])
 
 TALLERES = ["Obligaciones legales", "Gestión de asociaciones", "Contabilidad", "Subvenciones", "Contratación", "Facturación electrónica"]
 AAPP = ["Ayuntamientos", "Cabildos", "Programas de participación ciudadana", "Concejalías de juventud", "Servicios sociales"]
@@ -73,13 +65,17 @@ def islas():
 
 def inicio():
     tipos = "".join(f"<li>{esc(t)}</li>" for t in TIPOS)
-    areas = "".join(f'''<article class="area aparece">
-      <span class="area-num" aria-hidden="true">{i:02d}</span>
-      <h3>{esc(t)}</h3><p>{esc(d)}</p>{lista(l) if l else ""}
-    </article>''' for i, (t, d, l) in enumerate(AREAS, 1))
+    areas = ""
+    for i, s in enumerate(SERVICIOS, 1):
+        img = imagen(s.get("imagen"), s.get("imagen_alt") or "", "(min-width: 1100px) 360px, (min-width: 700px) 45vw, 92vw", "area-foto")
+        puntos = [x for x in str(s.get("puntos", "")).splitlines() if x.strip()]
+        areas += f'''<article class="area aparece{" con-foto" if img else ""}">{img}
+      <div class="area-txt"><span class="area-num" aria-hidden="true">{i:02d}</span>
+      <h3>{esc(s.get("titulo"))}</h3><p>{esc(s.get("texto"))}</p>{lista(puntos) if puntos else ""}</div>
+    </article>'''
 
     packs = "".join(f'''<article class="pack aparece{" pack-destacado" if i == 0 else ""}">
-      <header><h3>{esc(p.get("nombre"))}</h3><p class="pack-lema">{esc(p.get("lema"))}</p></header>
+      {imagen(p.get("imagen"), p.get("imagen_alt") or "", "(min-width: 1100px) 360px, 92vw", "pack-foto")}<header><h3>{esc(p.get("nombre"))}</h3><p class="pack-lema">{esc(p.get("lema"))}</p></header>
       <p class="precio">{esc(p.get("precio"))}</p>
       <p>{esc(p.get("texto"))}</p>
       {lista([x for x in str(p.get("incluye", "")).splitlines() if x.strip()])}
@@ -103,6 +99,8 @@ def inicio():
         "parentOrganization": {"@type": "Organization", "name": "Naroe Consulting S.L.", "url": "https://naroeconsulting.com"},
     }, ensure_ascii=False)
 
+    hero = portada_foto("manos", "Manos de varias personas unidas sobre una mesa de trabajo")
+    reunion = foto("reunion", "Grupo de personas reunidas alrededor de una mesa", "(min-width: 860px) 45vw, 92vw", "tipos-foto")
     cuerpo = f'''<section class="portada">
   <div class="contenedor portada-grid">
     <div class="portada-texto">
@@ -114,7 +112,12 @@ def inicio():
         <a class="boton boton-linea" href="#planes">Ver planes y precios</a>
       </div>
     </div>
-    <div class="portada-arte" aria-hidden="true">{islas()}</div>
+    <div class="portada-arte{" con-foto" if hero else ""}">{hero}
+      {"" if hero else '<div aria-hidden="true">' + islas() + '</div>'}
+      <ul class="flotantes" aria-hidden="true">
+        <li>{ICO["check"]} Estatutos al día</li><li>{ICO["check"]} Subvención justificada</li><li>{ICO["check"]} Factura en FACe</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -122,7 +125,7 @@ def inicio():
   <div class="contenedor tipos-grid">
     <div><p class="antetitulo">Con quién trabajamos</p><h2 id="t-tipos">Asociaciones de todo tipo, en todas las islas</h2>
     <p>Muchas asociaciones hacen un trabajo social, cultural o comunitario muy importante, pero las dificultades administrativas, fiscales o de gestión les restan tiempo y energía para sus proyectos. Nuestra misión es fortalecer el tejido asociativo con servicios profesionales que les permitan centrarse en su actividad y en su impacto social.</p></div>
-    <ul class="tipos">{tipos}</ul>
+    <div>{reunion}<ul class="tipos">{tipos}</ul></div>
   </div>
 </section>
 
