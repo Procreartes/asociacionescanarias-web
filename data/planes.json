@@ -1,6 +1,7 @@
 [
-  {"id": "impulsa", "nombre": "Plan Impulsa", "para": "Asociaciones pequeñas", "precio": "45", "nota": "Soporte básico"},
-  {"id": "gestiona", "nombre": "Plan Gestiona", "para": "Asociaciones activas", "precio": "95", "nota": "Incluye contabilidad"},
-  {"id": "profesional", "nombre": "Plan Profesional", "para": "Asociaciones que prestan servicios", "precio": "185", "nota": "Actividad económica"},
-  {"id": "red-publica", "nombre": "Plan Red Pública", "para": "Asociaciones que trabajan con administraciones", "precio": "325", "nota": "Facturación pública"}
+  {"id": "semilla", "nombre": "Plan Semilla", "para": "Asociaciones muy pequeñas: cuotas de socios y una subvención pequeña", "precio": "19", "nota": "Pago anual: 228 €", "incluye": "Calendario de obligaciones con avisos\nLibro de socios y cobro de cuotas\nPlantillas de actas y certificados\nGuía para renovar la junta en el Registro\nLista de comprobación de justificación y transparencia\nResolución de dudas por chat\n1 consulta express al año"},
+  {"id": "impulsa", "nombre": "Plan Impulsa", "para": "Asociaciones pequeñas", "precio": "45", "nota": "Soporte básico", "incluye": "Todo lo del Plan Semilla\nTrámites del Registro hechos por nosotros\nModelo 182 de donaciones\nProtección de datos\nConsultas por escrito"},
+  {"id": "gestiona", "nombre": "Plan Gestiona", "para": "Asociaciones activas", "precio": "95", "nota": "Incluye contabilidad", "incluye": "Todo lo del Plan Impulsa\nContabilidad de entidad sin ánimo de lucro\nCuentas y memoria para la asamblea\nImpuesto sobre Sociedades e IGIC\nPortal de transparencia\nAvisos de convocatorias"},
+  {"id": "profesional", "nombre": "Plan Profesional", "para": "Asociaciones que prestan servicios", "precio": "185", "nota": "Actividad económica", "incluye": "Todo lo del Plan Gestiona\nFacturación y actividad económica\nIGIC repercutido\n1 justificación de subvención al año"},
+  {"id": "red-publica", "nombre": "Plan Red Pública", "para": "Asociaciones que trabajan con administraciones", "precio": "325", "nota": "Facturación pública", "incluye": "Todo lo del Plan Profesional\nFacturación electrónica a administraciones (FACe)\nVarias justificaciones al año\nNóminas de hasta 2 personas"}
 ]

@@ -16,6 +16,14 @@
     "imagen_alt": ""
   },
   {
+    "id": "transparencia-y-cumplimiento",
+    "titulo": "Transparencia y cumplimiento",
+    "texto": "Muchas asociaciones con subvenciones están obligadas a publicar información cada año. Lo dejamos hecho y al día.",
+    "puntos": "Portal de transparencia\nObligaciones ante el Comisionado de Transparencia de Canarias\nProtección de datos de socios y voluntariado\nCalendario de obligaciones con avisos",
+    "imagen": "",
+    "imagen_alt": ""
+  },
+  {
     "id": "actividad-economica-y-facturacion",
     "titulo": "Actividad económica y facturación",
     "texto": "Muchas asociaciones desarrollan proyectos y prestan servicios. Les apoyamos para hacerlo bien.",

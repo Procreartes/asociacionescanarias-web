@@ -1,0 +1,5 @@
+[
+  {"id": "online-mensual", "titulo": "Asociación al día: obligaciones del año en 45 minutos", "modalidad": "Online", "fecha": "Cada mes", "lugar": "Videollamada", "texto": "Qué tiene que hacer una asociación cada año y cómo no olvidarse de nada. Con turno de preguntas.", "enlace": ""},
+  {"id": "subvenciones", "titulo": "Cómo justificar una subvención sin sustos", "modalidad": "Online", "fecha": "Cada trimestre", "lugar": "Videollamada", "texto": "Los errores más comunes al justificar y cómo evitarlos, con ejemplos reales.", "enlace": ""},
+  {"id": "presencial-islas", "titulo": "Encuentro presencial de asociaciones", "modalidad": "Presencial", "fecha": "Cada trimestre, en una isla", "lugar": "Gran Canaria, Tenerife y resto de islas por turnos", "texto": "Un taller práctico y consultas individuales de 10 minutos para resolver dudas concretas.", "enlace": ""}
+]

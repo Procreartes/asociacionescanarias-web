@@ -1,0 +1,10 @@
+[
+  {"id": "justificacion-pequena", "servicio": "Justificación de subvención pequeña", "detalle": "Hasta unos 6.000 €", "precio": "150 €"},
+  {"id": "justificacion", "servicio": "Justificación de subvención", "detalle": "Mediana o grande", "precio": "desde 300 €"},
+  {"id": "solicitud", "servicio": "Solicitud de subvención", "detalle": "Proyecto, presupuesto y anexos", "precio": "desde 300 €"},
+  {"id": "modelo-182", "servicio": "Modelo 182 de donaciones", "detalle": "Para el Plan Semilla", "precio": "30 €"},
+  {"id": "transparencia", "servicio": "Portal de transparencia", "detalle": "Alojado y actualizado cada año", "precio": "60 €/año"},
+  {"id": "interes-publico", "servicio": "Declaración de interés o utilidad pública", "detalle": "Con deducciones para quien dona", "precio": "desde 600 €"},
+  {"id": "voluntariado", "servicio": "Plan de Voluntariado", "detalle": "Con anexos y fichas de adhesión", "precio": "desde 350 €"},
+  {"id": "acoso", "servicio": "Protocolo de acoso", "detalle": "Adaptado a la asociación", "precio": "desde 300 €"}
+]

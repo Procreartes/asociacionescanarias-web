@@ -2,7 +2,8 @@
 """Genera la web de Asociaciones Canarias (asociacionescanarias.com).
 
 Uso:  python3 scripts/generar.py
-Datos editables (Gestor de webs del portal o a mano): data/packs.json, data/planes.json, data/consultas.json
+Datos editables (Gestor de webs del portal o a mano): data/packs.json, data/planes.json, data/consultas.json,
+                  data/extras.json, data/encuentros.json, data/servicios.json
 No edites los .html a mano: se sobrescriben.
 """
 import json
@@ -23,7 +24,7 @@ S = Sitio(
     objeto="Esta web informa sobre Asociaciones Canarias, el servicio de asesoría, gestión y formación para asociaciones de Naroe Consulting S.L., y sobre la forma de contactar.",
     color_tema="#1f5c50", color_fondo="#f7f1e6",
     precarga=["fraunces-latin-700-normal.woff2", "nunito-sans-latin-400-normal.woff2"],
-    menu=[("/#servicios", "Servicios"), ("/#packs", "Packs"), ("/#planes", "Planes"),
+    menu=[("/#servicios", "Servicios"), ("/#packs", "Packs"), ("/#planes", "Planes"), ("/#encuentros", "Encuentros gratis"),
           ("/#formacion", "Formación"), ("/#contacto", "Contacto")],
     marca='<span class="logo-islas" aria-hidden="true"><i></i><i></i><i></i></span><span>Asociaciones <em>Canarias</em></span>',
     pie_html='''<div class="pie-arriba">
@@ -37,6 +38,10 @@ S = Sitio(
 PACKS = datos("packs.json", [])
 PLANES = datos("planes.json", [])
 CONSULTAS = datos("consultas.json", [])
+# Servicios sueltos: [{id, servicio, detalle, precio}]
+EXTRAS = datos("extras.json", [])
+# Encuentros gratuitos: [{id, titulo, modalidad, fecha, lugar, texto, enlace (inscripción, opcional)}]
+ENCUENTROS = datos("encuentros.json", [])
 
 TIPOS = ["Culturales", "Juveniles", "Sociales", "Vecinales", "Deportivas", "ONG y entidades sin ánimo de lucro"]
 
@@ -45,7 +50,7 @@ SERVICIOS = datos("servicios.json", [])
 
 TALLERES = ["Obligaciones legales", "Gestión de asociaciones", "Contabilidad", "Subvenciones", "Contratación", "Facturación electrónica"]
 AAPP = ["Ayuntamientos", "Cabildos", "Programas de participación ciudadana", "Concejalías de juventud", "Servicios sociales"]
-POR_QUE = ["Asesoría especializada en asociaciones", "Experiencia en gestión de proyectos y subvenciones",
+POR_QUE = ["Asesoría especializada en asociaciones, en Canarias", "Conocemos el IGIC y las convocatorias de las islas", "Planes para todos los tamaños, también para las más pequeñas", "Experiencia en gestión de proyectos y subvenciones",
            "Apoyo en la actividad económica", "Acompañamiento profesional", "Formación práctica"]
 
 
@@ -87,7 +92,21 @@ def inicio():
       <p class="plan-para">{esc(p.get("para"))}</p>
       <p class="plan-precio"><span>desde</span> <strong>{esc(p.get("precio"))} €</strong><span>/mes</span></p>
       {f'<p class="plan-nota">{ICO["check"]}{esc(p["nota"])}</p>' if p.get("nota") else ""}
+      {lista([x for x in str(p.get("incluye", "")).splitlines() if x.strip()], "lista-check plan-incluye") if p.get("incluye") else ""}
     </li>''' for p in PLANES)
+
+    extras = "".join(f'''<tr><th scope="row">{esc(c.get("servicio"))}{f'<span>{esc(c["detalle"])}</span>' if c.get("detalle") else ""}</th>
+      <td>{esc(c.get("precio"))}</td></tr>''' for c in EXTRAS)
+
+    encuentros = "".join(f'''<article class="encuentro aparece">
+      <p class="encuentro-tipo">{esc(e.get("modalidad"))} · gratuito</p>
+      <h3>{esc(e.get("titulo"))}</h3>
+      <p class="encuentro-cuando">{ICO["cal"]}<span>{esc(e.get("fecha"))}</span></p>
+      {f'<p class="encuentro-cuando">{ICO["pin"]}<span>{esc(e["lugar"])}</span></p>' if e.get("lugar") else ""}
+      <p>{esc(e.get("texto"))}</p>
+      <a class="boton boton-linea" href="{esc(e["enlace"]) if e.get("enlace") else mailto(CORREO, "Inscripción: " + e.get("titulo", "encuentro gratuito"))}">{"Inscribirse" if e.get("enlace") else "Avísenme de la fecha"} {ICO["flecha"]}</a>
+    </article>''' for e in ENCUENTROS)
+    minimo = min((int(p["precio"]) for p in PLANES if str(p.get("precio", "")).isdigit()), default=None)
 
     consultas = "".join(f'''<tr><th scope="row">{esc(c.get("servicio"))}{f'<span>{esc(c["detalle"])}</span>' if c.get("detalle") else ""}</th>
       <td>{esc(c.get("precio"))}</td></tr>''' for c in CONSULTAS)
@@ -109,7 +128,7 @@ def inicio():
       <p class="entradilla">Ayudamos a las asociaciones de Canarias a organizarse, cumplir con sus obligaciones y profesionalizar su actividad. Desde la constitución hasta las subvenciones, la facturación o la relación con las administraciones públicas.</p>
       <div class="botones">
         <a class="boton boton-principal" href="{mailto(CORREO, "Primera orientación gratuita")}">Primera orientación gratuita {ICO["flecha"]}</a>
-        <a class="boton boton-linea" href="#planes">Ver planes y precios</a>
+        <a class="boton boton-linea" href="#planes">{f"Planes desde {minimo} €/mes" if minimo else "Ver planes y precios"}</a>
       </div>
     </div>
     <div class="portada-arte{" con-foto" if hero else ""}">{hero}
@@ -149,17 +168,30 @@ def inicio():
     <div class="cabecera-seccion"><p class="antetitulo">Planes de asesoramiento mensual</p><h2 id="t-planes">Una cuota al mes y la gestión al día</h2>
     <p class="entradilla">Elijan el plan que encaja con el tamaño y la actividad de su asociación.</p></div>
     <ul class="planes">{planes}</ul>
-    <p class="nota-precios">Precios orientativos. Antes de empezar les preparamos un presupuesto cerrado según las necesidades de su asociación.</p>
+    <div class="extras">
+      <div><h3>Servicios sueltos</h3><p>Para lo que no entra en su plan, con precio cerrado.</p></div>
+      <table class="tabla-precios"><caption class="visualmente-oculto">Precios de los servicios sueltos</caption>
+      <thead><tr><th scope="col">Servicio</th><th scope="col">Precio</th></tr></thead><tbody>{extras}</tbody></table>
+    </div>
+    <p class="nota-precios">El Plan Semilla se paga una vez al año. Precios orientativos. Antes de empezar les preparamos un presupuesto cerrado según las necesidades de su asociación.</p>
   </div>
 </section>
 
 <section class="seccion" id="consultas" aria-labelledby="t-consultas">
   <div class="contenedor consultas-grid">
     <div><p class="antetitulo">Consultas profesionales</p><h2 id="t-consultas">¿Una duda concreta?</h2>
-    <p>Para resolver una cuestión puntual sin contratar un plan. La primera orientación es gratuita.</p>
+    <p>Para resolver una cuestión puntual sin contratar un plan. La primera orientación es gratuita, y si contratan un plan en los 30 días siguientes, les descontamos la consulta.</p>
     <a class="boton boton-principal" href="{mailto(CORREO, "Consulta profesional")}">Pedir una consulta {ICO["flecha"]}</a></div>
     <table class="tabla-precios"><caption class="visualmente-oculto">Precios de las consultas</caption>
     <thead><tr><th scope="col">Servicio</th><th scope="col">Precio</th></tr></thead><tbody>{consultas}</tbody></table>
+  </div>
+</section>
+
+<section class="seccion" id="encuentros" aria-labelledby="t-encuentros">
+  <div class="contenedor">
+    <div class="cabecera-seccion"><p class="antetitulo">Encuentros gratuitos</p><h2 id="t-encuentros">Aprendan con nosotros, sin coste</h2>
+    <p class="entradilla">Sesiones online cada mes y encuentros presenciales por las islas, abiertos a cualquier asociación. Con tiempo para sus preguntas.</p></div>
+    <div class="encuentros">{encuentros}</div>
   </div>
 </section>
 
