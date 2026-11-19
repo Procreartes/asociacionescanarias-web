@@ -3,7 +3,7 @@
 
 Uso:  python3 scripts/generar.py
 Datos editables (Gestor de webs del portal o a mano): data/packs.json, data/planes.json, data/consultas.json,
-                  data/extras.json, data/encuentros.json, data/servicios.json
+                  data/extras.json, data/encuentros.json, data/servicios.json, data/perfil.json
 No edites los .html a mano: se sobrescriben.
 """
 import json
@@ -42,6 +42,8 @@ CONSULTAS = datos("consultas.json", [])
 EXTRAS = datos("extras.json", [])
 # Encuentros gratuitos: [{id, titulo, modalidad, fecha, lugar, texto, enlace (inscripción, opcional)}]
 ENCUENTROS = datos("encuentros.json", [])
+# Quién está detrás: {nombre, titulo, texto, especialidades, entidades, reconocimientos} (listas: una por línea)
+PERFIL = datos("perfil.json", {})
 
 TIPOS = ["Culturales", "Juveniles", "Sociales", "Vecinales", "Deportivas", "ONG y entidades sin ánimo de lucro"]
 
@@ -106,6 +108,17 @@ def inicio():
       <p>{esc(e.get("texto"))}</p>
       <a class="boton boton-linea" href="{esc(e["enlace"]) if e.get("enlace") else mailto(CORREO, "Inscripción: " + e.get("titulo", "encuentro gratuito"))}">{"Inscribirse" if e.get("enlace") else "Avísenme de la fecha"} {ICO["flecha"]}</a>
     </article>''' for e in ENCUENTROS)
+    lineas = lambda k: [x for x in str(PERFIL.get(k, "")).splitlines() if x.strip()]
+    perfil = f'''<section class="seccion seccion-arena" id="quien" aria-labelledby="t-quien">
+  <div class="contenedor perfil">
+    <div><p class="antetitulo">Quién está detrás</p><h2 id="t-quien">{esc(PERFIL.get("titulo"))}</h2>
+    <p class="perfil-nombre">{esc(PERFIL.get("nombre"))}</p><p>{esc(PERFIL.get("texto"))}</p>
+    {f'<h3>Especialidad</h3>{lista(lineas("especialidades"))}' if lineas("especialidades") else ""}
+    {f'<h3>Reconocimientos</h3>{lista(lineas("reconocimientos"))}' if lineas("reconocimientos") else ""}</div>
+    <div class="perfil-entidades"><h3>Asociaciones que ha trabajado y dirigido</h3>
+    <ul>{"".join(f"<li>{esc(x)}</li>" for x in lineas("entidades"))}</ul></div>
+  </div>
+</section>''' if PERFIL.get("nombre") else ""
     minimo = min((int(p["precio"]) for p in PLANES if str(p.get("precio", "")).isdigit()), default=None)
 
     consultas = "".join(f'''<tr><th scope="row">{esc(c.get("servicio"))}{f'<span>{esc(c["detalle"])}</span>' if c.get("detalle") else ""}</th>
@@ -204,6 +217,8 @@ def inicio():
     </div>
   </div>
 </section>
+
+{perfil}
 
 <section class="seccion" aria-labelledby="t-porque">
   <div class="contenedor porque">
